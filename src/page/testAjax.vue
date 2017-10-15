@@ -1,17 +1,32 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div id="aa2">User {{ $route.params.userId }}</div>
+    <div id="aa2"> {{name}}</div>
+    <div > {{type}}</div>
   </div>
 </template>
 
 <script>
+  import {test,test2} from '../service/pay'
   export default {
     name: 'jn-a',
     data () {
       return {
-        msg: 'Welcome to jn-A'
+        msg: 'Welcome to jn-A',
+        name:'',
+        type:0
       }
+    },
+    mounted(){
+      test2(2,'sg').then(res=>{
+        console.log(res)
+        this.name = res.name;
+        this.type = res.type;
+       });
+      test(1).then(res=>{
+        console.log(res)
+        this.msg = res.msg;
+      });
     }
   }
 </script>
